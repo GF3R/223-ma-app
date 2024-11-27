@@ -1,9 +1,11 @@
 using System.Text;
 using L_Bank_W_Backend.DbAccess;
+using L_Bank_W_Backend.DbAccess.Data;
 using L_Bank_W_Backend.DbAccess.Repositories;
 using L_Bank_W_Backend.Models;
 using L_Bank_W_Backend.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -24,15 +26,15 @@ namespace L_Bank_W_Backend
                         .AllowAnyHeader();
                 });
             });
-            
+
             builder.Services.Configure<JwtSettings>(
                 builder.Configuration.GetSection("JwtSettings")
             );
-            
+
             builder.Services.Configure<DatabaseSettings>(
                 builder.Configuration.GetSection("DatabaseSettings")
             );
-            
+
             builder.Services
                 .AddAuthentication(x =>
                 {
@@ -71,7 +73,7 @@ namespace L_Bank_W_Backend
                         Version = "v1"
                     }
                 );
-                
+
                 var securityScheme = new OpenApiSecurityScheme
                 {
                     Name = "JWT Authentication",
@@ -101,6 +103,14 @@ namespace L_Bank_W_Backend
 
                 c.AddSecurityRequirement(securityRequirement);
             });
+            
+            
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(
+                    builder.Configuration.GetSection("DatabaseSettings:ConnectionString").Value,
+                    sqlOptions => sqlOptions.MigrationsAssembly("L-Bank.Web")
+                )
+            );
             
             var app = builder.Build();
             app.UseCors("AllowAll");

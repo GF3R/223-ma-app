@@ -3,15 +3,20 @@ using System.Data;
 using System.Data.SqlClient;
 using L_Bank_W_Backend.Core.Models;
 using Microsoft.Extensions.Options;
+using L_Bank_W_Backend;
+using L_Bank_W_Backend.DbAccess.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace L_Bank_W_Backend.DbAccess.Repositories;
 
 public class LedgerRepository : ILedgerRepository
 {
     private readonly DatabaseSettings databaseSettings;
-
-    public LedgerRepository(IOptions<DatabaseSettings> databaseSettings)
+    private readonly AppDbContext _context;
+    
+    public LedgerRepository(IOptions<DatabaseSettings> databaseSettings, AppDbContext context)
     {
+        this._context = context;
         this.databaseSettings = databaseSettings.Value;
     }
     
@@ -46,63 +51,24 @@ public class LedgerRepository : ILedgerRepository
         return totalBalance;
     }
 
-    public IEnumerable<Ledger> GetAllLedgers()
+    public async Task<IEnumerable<Ledger>> GetAllLedgers()
     {
-        var allLedgers = new List<Ledger>();
-
-        const string query = @$"SELECT id, name, balance FROM {Ledger.CollectionName} ORDER BY name";
-        bool worked;
-        do
+        await using var transaction = await _context.Database.BeginTransactionAsync(IsolationLevel.Serializable);
+        try
         {
-            worked = true;
-            using (SqlConnection conn = new SqlConnection(this.databaseSettings.ConnectionString))
-            {
-                conn.Open();
-                using (SqlTransaction transaction = conn.BeginTransaction(IsolationLevel.Serializable))
-                {
-                    try
-                    {
-                        using (SqlCommand cmd = new SqlCommand(query, conn, transaction))
-                        {
-                            using (SqlDataReader reader = cmd.ExecuteReader())
-                            {
-                                while (reader.Read())
-                                {
-                                    int id = reader.GetInt32(reader.GetOrdinal("id"));
-                                    string name = reader.GetString(reader.GetOrdinal("name"));
-                                    decimal balance = reader.GetDecimal(reader.GetOrdinal("balance"));
+            var allLedgers = await _context.Ledgers
+                .OrderBy(ledger => ledger.Name)
+                .ToListAsync();
 
-                                    allLedgers.Add(new Ledger { Id = id, Name = name, Balance = balance });
-                                }
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        //Console.WriteLine("Commit Exception Type: {0}", ex.GetType());
-                        //Console.WriteLine("  Message: {0}", ex.Message);
+            await transaction.CommitAsync();
 
-                        // Attempt to roll back the transaction.
-                        try
-                        {
-                            transaction.Rollback();
-                            if (ex.GetType() != typeof(Exception))
-                                worked = false;
-                        }
-                        catch (Exception ex2)
-                        {
-                            // Handle any errors that may have occurred on the server that would cause the rollback to fail.
-                            //Console.WriteLine("Rollback Exception Type: {0}", ex2.GetType());
-                            //Console.WriteLine("  Message: {0}", ex2.Message);
-                            if (ex2.GetType() != typeof(Exception))
-                                worked = false;
-                        }
-                    }
-                }
-            }
-        } while (!worked);
-
-        return allLedgers;
+            return allLedgers;
+        }
+        catch
+        {
+            await transaction.RollbackAsync();
+            throw;
+        }
     }
     
     public Ledger? SelectOne(int id)

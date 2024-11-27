@@ -5,7 +5,7 @@ namespace L_Bank_W_Backend.DbAccess.Repositories;
 
 public interface ILedgerRepository
 {
-    IEnumerable<Ledger> GetAllLedgers();
+    Task<IEnumerable<Ledger>> GetAllLedgers();
     public void Book(decimal amount, Ledger from, Ledger to);
     decimal GetTotalMoney();
     Ledger? SelectOne(int id);
