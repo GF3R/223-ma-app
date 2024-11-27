@@ -213,4 +213,36 @@ public class LedgerRepository : ILedgerRepository
 
         return null;
     }
+    
+    public void DeleteLedger(int id)
+    {
+        const string query = @$"DELETE FROM {Ledger.CollectionName} WHERE id=@Id";
+
+        using (SqlConnection conn = new SqlConnection(this.databaseSettings.ConnectionString))
+        {
+            conn.Open();
+            using (SqlTransaction transaction = conn.BeginTransaction(IsolationLevel.Serializable))
+            {
+                try
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, conn, transaction))
+                    {
+                        cmd.Parameters.AddWithValue("@Id", id);
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected == 0)
+                        {
+                            throw new Exception($"No Ledger found with id {id}");
+                        }
+                    }
+                    transaction.Commit();
+                }
+                catch
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }
+        }
+    }
 }

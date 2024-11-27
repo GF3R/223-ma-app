@@ -12,5 +12,6 @@ public interface ILedgerRepository
     Ledger? SelectOne(int id, SqlConnection conn, SqlTransaction? transaction);
     void Update(Ledger ledger, SqlConnection conn, SqlTransaction transaction);
     void Update(Ledger ledger);
+    void DeleteLedger(int id);
     decimal? GetBalance(int ledgerId, SqlConnection conn, SqlTransaction transaction);
 }
