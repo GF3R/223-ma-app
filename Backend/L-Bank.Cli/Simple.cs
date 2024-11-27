@@ -10,7 +10,23 @@ public static class Simple
         ////////////////////
         // Your Code Here
         ////////////////////
-
+        /// 
+        Random random = new();
+        var allLedgers = ledgerRepository.GetAllLedgers().ToArray();
+        Console.WriteLine();
+        Console.WriteLine("Press Esc to Stop");
+        do
+        {
+            while (!Console.KeyAvailable)
+            {
+                var from = allLedgers[random.Next(allLedgers.Length)];
+                var to = allLedgers[random.Next(allLedgers.Length)];
+                var amount = random.NextInt64(1, 101);
+                ledgerRepository.Book(amount, from, to);
+                Console.Write(".");
+            }
+        } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+        
         Console.WriteLine();
         Console.WriteLine("Getting total money in system at the end.");
         try

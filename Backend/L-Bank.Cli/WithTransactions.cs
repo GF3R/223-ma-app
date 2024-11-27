@@ -20,7 +20,7 @@ public static class WithTransactions
             var from = allLedgersAsArray[random.Next(allLedgersAsArray.Length)];
             var to = allLedgersAsArray[random.Next(allLedgersAsArray.Length)];
             var amount = random.NextInt64(1, 101);
-            //Console.Write(ledgerRepository.Book(amount, from, to)); !Uncomment this line
+            Console.Write(ledgerRepository.Book(amount, from, to));
         }
 
         Console.WriteLine();
