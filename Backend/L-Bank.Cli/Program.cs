@@ -43,7 +43,7 @@ catch (Exception ex)
 
 Console.WriteLine();
 Console.WriteLine("All Ledgers:");
-var allLedgers = ledgerRepository.GetAllLedgers();
+var allLedgers = await ledgerRepository.GetAllLedgers();
 foreach (var ledger in allLedgers)
 {
     Console.WriteLine($"ID: {ledger.Id} Name: {ledger.Name} Balance: {ledger.Balance}.");

@@ -1,11 +1,8 @@
-﻿using System.Security.Claims;
-using L_Bank_W_Backend.Core.Models;
-using L_Bank_W_Backend.DbAccess;
+﻿using L_Bank_W_Backend.Core.Models;
 using L_Bank_W_Backend.DbAccess.Repositories;
-using L_Bank_W_Backend.Models;
+using L_Bank_W_Backend.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace L_Bank_W_Backend.Controllers
 {
@@ -19,12 +16,12 @@ namespace L_Bank_W_Backend.Controllers
         {
             this.ledgerRepository = ledgerRepository;
         }
-        
+
         [HttpGet]
         [Authorize(Roles = "Administrators,Users")]
-        public IEnumerable<Ledger> Get()
+        public async Task<IEnumerable<Ledger>> Get()
         {
-            var allLedgers = this.ledgerRepository.GetAllLedgers();
+            var allLedgers = await this.ledgerRepository.GetAllLedgers();
             return allLedgers;
         }
 
@@ -34,6 +31,20 @@ namespace L_Bank_W_Backend.Controllers
         {
             var ledger = this.ledgerRepository.SelectOne(id);
             return ledger;
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Administrators")]
+        public IActionResult Post([FromBody] CreateLedgerDto ledger)
+        {
+            if (string.IsNullOrEmpty(ledger.Name))
+            {
+                return BadRequest("Ledger name is required");
+            }
+
+            ledgerRepository.CreateLedger(ledger.Name);
+
+            return NoContent();
         }
 
         [HttpPut("{id}")]

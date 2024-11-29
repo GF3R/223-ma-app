@@ -17,8 +17,8 @@ namespace L_Bank_W_Backend.DbAccess
 
         public void Initialize()
         {
-            CreateDatabaseIfNotExists();
-            CreateTablesIfNotExists();
+            // CreateDatabaseIfNotExists();
+            // CreateTablesIfNotExists();
         }
 
         public void Seed()
@@ -168,7 +168,7 @@ namespace L_Bank_W_Backend.DbAccess
 
                 foreach (var data in seedUsers)
                 {
-                    const string query = "INSERT INTO users (username, password_hash, role) VALUES (@Username, @PasswordHash, @Role)";
+                    const string query = "INSERT INTO users (username, PasswordHash, role) VALUES (@Username, @PasswordHash, @Role)";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@Username", data["username"]);

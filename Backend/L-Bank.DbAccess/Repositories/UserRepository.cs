@@ -19,7 +19,7 @@ namespace L_Bank_W_Backend.DbAccess.Repositories
         {
             User retUser;
 
-            const string query = @$"SELECT id, username, password_hash, role FROM {User.CollectionName} WHERE username=@Username";
+            const string query = @$"SELECT id, username, passwordhash, role FROM {User.CollectionName} WHERE username=@Username";
             using (SqlConnection conn = new SqlConnection(this.settings.ConnectionString))
             {
                 conn.Open();
@@ -33,7 +33,7 @@ namespace L_Bank_W_Backend.DbAccess.Repositories
 
                         int ordId = reader.GetInt32(reader.GetOrdinal("id"));
                         string ordUsername = reader.GetString(reader.GetOrdinal("username"));
-                        string ordPasswordHash = reader.GetString(reader.GetOrdinal("password_hash"));
+                        string ordPasswordHash = reader.GetString(reader.GetOrdinal("passwordhash"));
                         Roles ordRole = (Roles)Enum.Parse(typeof(Roles), reader.GetString(reader.GetOrdinal("role")), true);
 
                         retUser = new User { Id = ordId, Username = ordUsername, PasswordHash = ordPasswordHash, Role = ordRole };
@@ -53,7 +53,7 @@ namespace L_Bank_W_Backend.DbAccess.Repositories
         {
             User retUser;
 
-            const string query = $@"SELECT id, username, password_hash, role FROM {User.CollectionName} WHERE id=@Id";
+            const string query = $@"SELECT id, username, passwordhash, role FROM {User.CollectionName} WHERE id=@Id";
             using (SqlConnection conn = new SqlConnection(this.settings.ConnectionString))
             {
                 conn.Open();
@@ -67,7 +67,7 @@ namespace L_Bank_W_Backend.DbAccess.Repositories
 
                         int ordId = reader.GetInt32(reader.GetOrdinal("id"));
                         string ordUsername = reader.GetString(reader.GetOrdinal("username"));
-                        string ordPasswordHash = reader.GetString(reader.GetOrdinal("password_hash"));
+                        string ordPasswordHash = reader.GetString(reader.GetOrdinal("passwordhash"));
                         Roles ordRole = (Roles)Enum.Parse(typeof(Roles), reader.GetString(reader.GetOrdinal("role")), true);
 
                         retUser = new User { Id = ordId, Username = ordUsername, PasswordHash = ordPasswordHash, Role = ordRole };
@@ -80,7 +80,7 @@ namespace L_Bank_W_Backend.DbAccess.Repositories
 
         public void Update(User user, SqlConnection conn, SqlTransaction transaction)
         {
-            const string query = $"UPDATE {User.CollectionName} SET username=@Username, password_hash=@PasswordHash, role=@Role WHERE id=@Id";
+            const string query = $"UPDATE {User.CollectionName} SET username=@Username, passwordhash=@PasswordHash, role=@Role WHERE id=@Id";
             using (var cmd = new SqlCommand(query, conn, transaction))
             {
                 cmd.Parameters.AddWithValue("@Username", user.Username);
@@ -96,7 +96,7 @@ namespace L_Bank_W_Backend.DbAccess.Repositories
         public User Insert(User user, SqlConnection conn, SqlTransaction transaction)
         {
             int id;
-            const string query = $"INSERT INTO {User.CollectionName} (name, password_hash, role) VALUES (@Username, @PasswordHash, @Role)";
+            const string query = $"INSERT INTO {User.CollectionName} (name, passwordhash, role) VALUES (@Username, @PasswordHash, @Role)";
             using (var cmd = new SqlCommand(query, conn, transaction))
             {
                 cmd.Parameters.AddWithValue("@Username", user.Username);
