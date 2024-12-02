@@ -1,7 +1,9 @@
 ﻿using L_Bank_W_Backend.DbAccess;
+using L_Bank_W_Backend.DbAccess.Data;
 using L_Bank_W_Backend.DbAccess.Repositories;
 using L_Bank_W_Backend.Services;
 using L_Bank.Cli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -12,6 +14,13 @@ var services = new ServiceCollection();
 var dbSettings = configuration.GetSection("DatabaseSettings").Get<DatabaseSettings>() ?? throw new InvalidOperationException();
 var options = Options.Create(dbSettings); // this is needed to ensure compatability with the web application
 services.AddSingleton(options);
+
+services.AddDbContext<AppDbContext>(dbContextOptionsBuilder =>
+    dbContextOptionsBuilder.UseSqlServer(
+        dbSettings.ConnectionString,
+        sqlOptions => sqlOptions.MigrationsAssembly("L-Bank.Web") // this is needed to ensure compatability with the web application
+    )
+);
 
 // Register services
 services.AddTransient<IDatabaseSeeder, DatabaseSeeder>();
