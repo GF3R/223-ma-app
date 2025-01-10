@@ -24,8 +24,6 @@ Sie können folgende Quellen benutzen:
 - W3 schools: https://www.w3schools.com/sql/default.asp
 - YouTube
 
-Füllen Sie das Quiz Die L-Bank - SQL Quiz zu diesem Auftrag aus.
-
 ### Teilaufgabe 2: Fragen zum Programm
 Es wurde schon ein Grossteil des Programms erstellt. Schauen Sie sich mal das Backend durch.
 
