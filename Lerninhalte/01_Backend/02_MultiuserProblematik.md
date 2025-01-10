@@ -7,7 +7,7 @@ analysiert. In diesem Programm geht es um die Multiuserprobleme.
 ### Teilaufgabe 1: Buchungen
 Um den Betrieb zu simulieren, soll das Banking-Programm so erweitert werden,
 dass es den Betrieb simuliert und zufällige Buchungen vornimmt.
-Erweitern Sie das Programm so in «Program.cs» an der Stelle wo
+Erweitern Sie das Programm so in "Simple.cs" an der Stelle wo
 ```csharp	
 ////////////////////
 // Your Code Here

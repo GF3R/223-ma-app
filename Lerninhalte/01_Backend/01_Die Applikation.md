@@ -78,9 +78,9 @@ verwenden können, mit einem praktischen Codebeispiel für folgende Dinge:
 5. Wie wird in C# ein Wert (wie die Summe allen Geldes) abgefragt?
 
 Der Lern- und Arbeitsauftrag ist erfüllt, wenn …
-- Sie das Programm bei zum Laufen gebracht haben.
+- Sie das Programm zum Laufen gebracht haben.
 - Sie das Programm studiert haben und den Ablauf sowie die Klassen erklären können.
-- Sie zeigen können, wie mit C# DDL2-Befehle an die Datenbank gesendet werden können.
-- Sie zeigen können, wie mit C# DML3-Befehle an die Datenbank gesendet werden können.
+- Sie zeigen können, wie mit C# DDL-Befehle an die Datenbank gesendet werden können.
+- Sie zeigen können, wie mit C# DML-Befehle an die Datenbank gesendet werden können.
 - Sie zeigen können, wie mit C# Daten in der Datenbank abgefragt werden können.
 - Sie zeigen können, wie mit C# Daten in der Datenbank eingefügt und geändert werden können.
