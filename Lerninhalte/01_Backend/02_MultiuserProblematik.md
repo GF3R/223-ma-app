@@ -38,6 +38,9 @@ Um mehrere User (multiuser) zu simulieren, starten Sie das Programm
 mehrfach (mindestens drei Mal):
 Klicken Sie mit der rechten Maustaste auf das Projekt und wählen Sie «Debug»,
 «Start Without Debugging».
+Je nach IDE müssen Sie zudem die Build Config anpassen und mehrere parallele Instanzen erlauben, via der checkbox "Allow multiple instances".
+
+![allow multiple instances](image-2.png)
 
 Verändert sich sie Summe des Geldes im System? Sollte sie sich verändern?
 
@@ -102,7 +105,7 @@ Wie könnte dieses Problem behoben werden?
 
 ### Teilaufgabe 3: Beheben des Problems
 
-Ergänzen Sie Ledger.cs um eine Methode «public void LoadBalance()», welche mit
+Ergänzen Sie LedgerRepository.cs um eine Methode «public void LoadBalance()», welche mit
 dem SQL-Befehl «SELECT balance FROM ledgers WHERE id=@Id» die Balance
 aus der Datenbank liest. Schauen Sie dabei bei LedgerRepository.GetTotalMoney() nach,
 wie man einen Wert aus der Datenbank ausliest.
@@ -111,12 +114,12 @@ Ergänzen Sie LedgerRepository.Book(…) wie folgt.
 ```csharp
 public void Book(decimal amount, Ledger from, Ledger to)
 {
-    from.LoadBalance();
+    this.LoadBalance(from);
     from.Balance -= amount;
     from.Save();
     // Complicate calculations
     Thread.Sleep(250);
-    to.LoadBalance();
+    this.LoadBalance(to);
     to.Balance += amount;
     to.Save();
 }

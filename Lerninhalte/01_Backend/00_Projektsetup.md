@@ -50,4 +50,12 @@ Erstellen Sie ein Appsettings.json, sodass sie die Werte aus ihrem .env file ver
 Wenn all dies gemacht ist, sollten sie das Frontend und Backend starten können.
 Dieses finden sie im Repo unter `frontend` und `backend`.
 
-Testen Sie das und loggen Sie sich ein
+Testen Sie das und loggen Sie sich ein.
+
+Wenn das geklappt hat, machen Sie das gleiche mit dem `cli` Projekt.
+Falls es nicht startet, könnte es daran liegen, dass das Appsettings.json nicht sauber kopiert wird im Build Prozess. 
+
+Stellen Sie sicher, dass bei ihrem Appsettings.json die Properties auf `Copy if newer` oder `Copy always` stehen:
+
+![properties](image-1.png)
+![copy if newer](image.png)

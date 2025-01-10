@@ -59,7 +59,7 @@ werden?
 
 
 Bringen Sie das Programm zum Laufen und sehen Sie sich mit dem «SQL Server
-Management Studio» die Tabellen an. (Falls ihrMariaDb verwendet ist eventuell HeidiSQL oder ähnliche Tools einfacher)
+Management Studio» die Tabellen an. (Falls ihr MariaDb verwendet ist eventuell HeidiSQL oder ähnliche Tools einfacher)
 Bringen Sie folgenden Ablauf des Programms in die korrekte Reihenfolge:
 1. Es werden alle Ledgers (Kontos) abgefragt und ausgegeben.
 2. Das Geld in allen Ledgers wird am Ende zusammengezählt und ausgegeben.
