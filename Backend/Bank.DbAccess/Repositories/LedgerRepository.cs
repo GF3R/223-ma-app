@@ -155,7 +155,7 @@ public class LedgerRepository(IOptions<DatabaseSettings> databaseSettings) : ILe
     
     public decimal? GetBalance(int ledgerId, MySqlConnection conn, MySqlTransaction transaction)
     {
-        const string query = "SELECT balance FROM ledgers WHERE id=@Id";
+        const string query = $"SELECT balance FROM {Ledger.CollectionName} WHERE id=@Id";
 
         using var cmd = new MySqlCommand(query, conn, transaction);
         cmd.Parameters.AddWithValue("@Id", ledgerId);
