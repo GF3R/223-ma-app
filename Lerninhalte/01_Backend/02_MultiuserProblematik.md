@@ -116,12 +116,12 @@ public void Book(decimal amount, Ledger from, Ledger to)
 {
     this.LoadBalance(from);
     from.Balance -= amount;
-    from.Save();
+    this.Update(from);
     // Complicate calculations
     Thread.Sleep(250);
     this.LoadBalance(to);
     to.Balance += amount;
-    to.Save();
+    this.Update(to);
 }
 ```	
 
