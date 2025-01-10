@@ -53,10 +53,9 @@ Analysieren Sie das Programm und beantworten Sie folgende Fragen:
 werden?
 2. Recherchieren Sie, was ein HashSet und was ein ImmutableHashSet ist.
 3. Welcher SQL-Befehl zählt alles Geld zusammen?
-4. Was bedeutet <<Property>>?
-5. Was bedeutet <<Readonly>>?
+4. Was bedeutet <\<Property>>?
+5. Was bedeutet <\<Readonly>>?
 6. (Schwer) Wieso wird nicht «double» für den Kontostand verwendet?
-7. implementieren sie die Methode Book.
 
 
 Bringen Sie das Programm zum Laufen und sehen Sie sich mit dem «SQL Server
