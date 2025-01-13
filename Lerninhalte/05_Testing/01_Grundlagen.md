@@ -15,7 +15,6 @@ Erstellen Sie ein eigenes Projekt für «normale» Tests. Erstellen Sie Integrat
 
 Frischen Sie Ihr Wissen über Testing auf mit den entsprechenden Modulen oder Quellen wie https://xunit.net/docs/getting-started/netcore/visual-studio oder https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-dotnet-test.
 
-
 erstellen Sie folgendes Grundgerüst:
 
 ```csharp
@@ -23,7 +22,7 @@ erstellen Sie folgendes Grundgerüst:
 using System;
 using Xunit.Abstractions;
 
-namespace LederTest
+namespace LedgerTest
 {
     public class LedgerRepositoryTests
     {
@@ -50,6 +49,8 @@ Die «Collection» verhindert das parallele Ausführen der Tests Erstellen Sie U
 Testen Sie auch, dass Fehlerzustände nicht auftreten können, also beispielsweise nicht gebucht wird, wenn die Buchung grösser ist als die zur Verfügung stehende Balance oder dass ein Ledger nicht geändert wird bei falscher ID. Testen Sie auch Edge-Cases, wie wenn beispielsweise der Genaue Betrag auf einem Ledger gebucht wird, so dass die Balance nachher 0 ist. Da wir für die Multiusertests die «echte» Datenbank verwenden, Mocken wir die Datenbank nicht. In einer echten Applikation würden Frameworks wie «Moq» für diese Aufgabe verwendet. 
 
 Die gesuchten Fachleute sind diejenigen, die ChatGPT für die mühsamen Arbeiten verwenden und den Output verstehen und korrigieren können. Um etwas zu verstehen, muss die mühsame Arbeit normalerweise zuerst selbst erledigt werden. Finden Sie also eine gute Mischung zwischen selbst erstellten Unittests und der Hilfe von ChatGPT.
+
+**Wichtig** damit Sie die unittests ohne mocks durchführen können, müssen sie Dependency Injection verwenden. Hierfür benötigen Sie noch ein weiteres Nuget Package für xunit. Installieren Sie hierfür Xunit.Microsoft.DependencyInjection.
 
 ### Teilaufgabe 2: Parallele Unittests
 
