@@ -20,7 +20,7 @@ Was ist die Lösung dieses Problems?
 
 ## Teilaufgabe 2: Implementation
 
-Implementieren Sie im Backend den Controller und das Model.
+Implementieren Sie im Backend den Controller und das Repository.
 
 Wenn eine Transaktion misslingt, dann sollten Sie sie diese neu starten. Dafür müssen Sie die ganze Operation in eine Schleife einbauen.
 
