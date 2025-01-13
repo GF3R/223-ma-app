@@ -22,7 +22,7 @@ Was ist die Lösung dieses Problems?
 
 Implementieren Sie im Backend den Controller und das Model.
 
-Wenn eine Transaktion misslingt, dann sollten Sie sie diese neu starten. Dafür müssen Sie die ganze Operation in eine Schleife einbauen. Wie das gemacht wird, sehen Sie in LedgersModel.SelectOne().
+Wenn eine Transaktion misslingt, dann sollten Sie sie diese neu starten. Dafür müssen Sie die ganze Operation in eine Schleife einbauen.
 
 Testen Sie das Backend mit der JSON-MAN Website, indem Sie zuerst einloggen und dann den Bookings-API-Endpunkt aufrufen.
 

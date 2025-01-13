@@ -17,7 +17,6 @@ public class BookingRepository(IOptions<DatabaseSettings> settings, AppDbContext
         // Führen Sie die Buchung durch und UPDATEn Sie die ledgers
         // Beenden Sie die Transaktion
         // Bei einem Transaktionsproblem: Restarten Sie die Transaktion in einer Schleife 
-        // (Siehe LedgersModel.SelectOne)
 
         return false; // Lösch mich
     }

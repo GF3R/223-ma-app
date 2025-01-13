@@ -1,6 +1,6 @@
 # Testing
 
-Wir vermuten, dass die Funktion BookingsModel.book(…) im Backend anfällig auf Multiuserprobleme sein könnte, darum erstellen wir Unittests um spezifisch die Multiuserfähigkeiten und potentielle Probleme zu testen. Um Multiuserprobleme zu testen, müssen normale Unittests zuerst das Vertrauen erhöhen, dass die Applikation nach Spezifikation funktioniert.
+Wir vermuten, dass die Funktion book(…) im BookingRepository im Backend anfällig auf Multiuserprobleme sein könnte, darum erstellen wir Unittests um spezifisch die Multiuserfähigkeiten und potentielle Probleme zu testen. Um Multiuserprobleme zu testen, müssen normale Unittests zuerst das Vertrauen erhöhen, dass die Applikation nach Spezifikation funktioniert.
 
 ## Aufgabenstellung
 
@@ -23,7 +23,7 @@ erstellen Sie folgendes Grundgerüst:
 using System;
 using Xunit.Abstractions;
 
-namespace LEdgerModelTests
+namespace LederTest
 {
     public class LedgerRepositoryTests
     {
