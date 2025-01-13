@@ -46,6 +46,32 @@ GO
 
 ```
 
+falls sie MariaDB verwenden, können sie folgendes SQL-Statement verwenden:
+
+```sql
+-- (Optional) Drop the database if it already exists
+DROP DATABASE IF EXISTS l_bank;
+
+-- Create and select the database
+CREATE DATABASE l_bank;
+USE l_bank;
+
+-- Create the table
+CREATE TABLE ledgers (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL,
+    balance DECIMAL(19,4) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+-- Insert data
+INSERT INTO ledgers (id, name, balance) VALUES
+    (16, 'Manitu AG', 100.0000),
+    (17, 'Chrysalkis GmbH', 200.0000),
+    (18, 'Smith & Co KG', 300.0000);
+
+```
+
 ## Aufgabenstellung
 In dieser Aufgabe werden Transaktionen theoretisch und praktisch erkundet.
 ### Teilaufgabe 1 Theoretische Analyse
@@ -181,6 +207,8 @@ Stellen Sie für die ersten beiden SQL-Tabs die Isolation «Serializeable» ein 
 ![](2024-11-22-10-13-27.png)
 
 Starten Sie in jedem der drei Tabs eine Transaktion, indem Sie «BEGIN TRANSACTION;» eingeben und auf «Execute» klicken.
+
+Falls Sie MariaDb verwenden alutet der Befehl `START TRANSACTION;`
 
 Führen Sie die Befehle aus der Tabelle  erneut aus.
 

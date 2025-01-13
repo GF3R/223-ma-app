@@ -14,10 +14,10 @@ Ersetzen Sie die Funktionen, Book, GetAllLedgers und GetTotalMoney  im LedgerRep
 
     public string Book(decimal amount, Ledger from, Ledger to)
     {
-        using (SqlConnection conn = new SqlConnection(this.databaseSettings.ConnectionString))
+        using (MySqlConnection conn = new MySqlConnection(this.databaseSettings.ConnectionString))
         {
             conn.Open();
-            using (SqlTransaction transaction = conn.BeginTransaction(IsolationLevel.Serializable))
+            using (MySqlTransaction transaction = conn.BeginTransaction(IsolationLevel.Serializable))
             {
                 try
                 {
@@ -64,10 +64,10 @@ Ersetzen Sie die Funktionen, Book, GetAllLedgers und GetTotalMoney  im LedgerRep
         var allLedgers = new HashSet<Ledger>();
 
         const string query = @$"SELECT id, name, balance FROM {Ledger.CollectionName}";
-        using (SqlConnection conn = new SqlConnection(this.databaseSettings.ConnectionString))
+        using (MySqlConnection conn = new MySqlConnection(this.databaseSettings.ConnectionString))
         {
             conn.Open();
-            using (SqlCommand cmd = new SqlCommand(query, conn))
+            using (MySqlCommand cmd = new MySqlCommand(query, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -96,10 +96,10 @@ Ersetzen Sie die Funktionen, Book, GetAllLedgers und GetTotalMoney  im LedgerRep
         const string query = @$"SELECT SUM(balance) AS TotalBalance FROM {Ledger.CollectionName}";
         decimal totalBalance = 0;
 
-        using (SqlConnection conn = new SqlConnection(this.databaseSettings.ConnectionString))
+        using (MySqlConnection conn = new MySqlConnection(this.databaseSettings.ConnectionString))
         {
             conn.Open();
-            using (SqlTransaction transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted))
+            using (MySqlTransaction transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted))
             {
                 try
                 {
