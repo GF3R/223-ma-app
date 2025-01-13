@@ -4,13 +4,16 @@ Wir vermuten, dass die Funktion BookingsModel.book(…) im Backend anfällig auf
 
 ## Aufgabenstellung
 
-Erstellen Sie normale Unittests mit einer guten Test Coverage und erstellen Sie danach Tests, die spezifisch auf die Multiuserprobleme testen.
+Erstellen Sie Integrationstests mit einer guten Test Coverage und erstellen Sie danach Tests, die spezifisch auf die Multiuserprobleme testen.
 
-### Teilaufgabe 1: Normale Unittests
+In der aktuellen Applikation gibt es sehr wenig Logik, daher ist ein Unit-Test nicht sinnvoll. Wir erstellen daher Integrationstests.
+Kennen Sie den Unterschied noch? Falls nicht, recherchieren Sie das kurz.
 
-Erstellen Sie ein eigenes Projekt für «normale» Unittests. Erstellen Sie Unittests für die Funktionen in BookingsModel. Testen Sie die Funktionen mit verschiedenen Parametern und prüfen Sie, ob die Funktionen das richtige Resultat zurückgeben.
+### Teilaufgabe 1: Integrationstests
 
-Frischen Sie Ihr Wissen über Unittests auf mit den entsprechenden Modulen oder Quellen wie https://xunit.net/docs/getting-started/netcore/visual-studio oder https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-dotnet-test.
+Erstellen Sie ein eigenes Projekt für «normale» Tests. Erstellen Sie Integrationstests für die Funktionen in Bookingservice. Testen Sie die Funktionen mit verschiedenen Parametern und prüfen Sie, ob die Funktionen das richtige Resultat zurückgeben.
+
+Frischen Sie Ihr Wissen über Testing auf mit den entsprechenden Modulen oder Quellen wie https://xunit.net/docs/getting-started/netcore/visual-studio oder https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-dotnet-test.
 
 
 erstellen Sie folgendes Grundgerüst:
@@ -43,7 +46,7 @@ namespace LEdgerModelTests
 
 Mit «output» können Informationen aus den Tests ausgegeben werden.
 
-Die «Collection» verhindert das parallele Ausführen der Tests Erstellen Sie Unittests nach dem «FIRST-U»1 und dem «Arrange/Act/Assert» Prinzip, so dass Sie eine vernünftige Coverage in den relevanten Klassen imBackend erreichen.
+Die «Collection» verhindert das parallele Ausführen der Tests Erstellen Sie Unittests nach dem [FIRST](https://medium.com/@tasdikrahman/f-i-r-s-t-principles-of-testing-1a497acda8d6) und dem «Arrange/Act/Assert» Prinzip, so dass Sie eine vernünftige Coverage in den relevanten Klassen imBackend erreichen.
 Testen Sie auch, dass Fehlerzustände nicht auftreten können, also beispielsweise nicht gebucht wird, wenn die Buchung grösser ist als die zur Verfügung stehende Balance oder dass ein Ledger nicht geändert wird bei falscher ID. Testen Sie auch Edge-Cases, wie wenn beispielsweise der Genaue Betrag auf einem Ledger gebucht wird, so dass die Balance nachher 0 ist. Da wir für die Multiusertests die «echte» Datenbank verwenden, Mocken wir die Datenbank nicht. In einer echten Applikation würden Frameworks wie «Moq» für diese Aufgabe verwendet. 
 
 Die gesuchten Fachleute sind diejenigen, die ChatGPT für die mühsamen Arbeiten verwenden und den Output verstehen und korrigieren können. Um etwas zu verstehen, muss die mühsame Arbeit normalerweise zuerst selbst erledigt werden. Finden Sie also eine gute Mischung zwischen selbst erstellten Unittests und der Hilfe von ChatGPT.
