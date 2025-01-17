@@ -37,6 +37,22 @@ export class LedgerService {
             return this.http.post(`${this.apiUrl}/ledgers`, Ledger)
     }
 
+    deleteLedger(ledgerId: number){
+        return this.http.delete(`${this.apiUrl}/ledgers/${ledgerId}`)
+    }
+
+<<<<<<< HEAD
+    create(id: number, name: string, balance: number) {
+        const Ledger = {
+            id,
+            name,
+            balance,
+        };
+            return this.http.post(`${this.apiUrl}/ledgers`, Ledger)
+    }
+
+=======
+>>>>>>> ce83984 (add delete method in frontend)
     transferFunds(fromLedgerId: number, toLedgerId: number, amount: number): Observable<unknown> {
         const payload = {
             fromLedgerId,
