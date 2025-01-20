@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank.Cli", "Bank.Cli\Bank.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank.Concurrent.Test", "Bank.Concurrent.Test\Bank.Concurrent.Test.csproj", "{4F5822A1-C600-43C3-814F-E4810B8BBCE9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{2572B8C5-6BEC-4F0A-9868-A4B102ADB30B}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LBank.Tests.Loadtest.Cli", "LBank.Tests.Loadtest.Cli\LBank.Tests.Loadtest.Cli.csproj", "{B9F0C42A-FE86-4024-8C4B-438B15ADF261}"
 EndProject
 Global
@@ -41,10 +43,6 @@ Global
 		{4F5822A1-C600-43C3-814F-E4810B8BBCE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F5822A1-C600-43C3-814F-E4810B8BBCE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F5822A1-C600-43C3-814F-E4810B8BBCE9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B9F0C42A-FE86-4024-8C4B-438B15ADF261}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B9F0C42A-FE86-4024-8C4B-438B15ADF261}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B9F0C42A-FE86-4024-8C4B-438B15ADF261}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B9F0C42A-FE86-4024-8C4B-438B15ADF261}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
