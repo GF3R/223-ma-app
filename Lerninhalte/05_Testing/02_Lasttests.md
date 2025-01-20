@@ -91,7 +91,7 @@ Hinweise:
 - Der Aufruf ist wie folgt:
 ```csharp
 var request =
-Http.CreateRequest("POST", "https://localhost:7183/api/v1/bookings")
+Http.CreateRequest("POST", "http://localhost:5000/api/v1/bookings")
 .WithHeader("Accept", "application/json")
 .WithHeader("Authorization", $"Bearer {jwt}")
 .WithBody(jsonContent);
